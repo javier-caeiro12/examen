@@ -2,6 +2,7 @@
 
 ### Crea una base de datos llamada wpexam
 
+
 image::assets/1-BD-wpexam.png[1-BD-wpexam, 200,200]
 
 
