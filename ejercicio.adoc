@@ -1,0 +1,106 @@
+# Ejercicio del examen
+
+### Crea una base de datos llamada wpexam
+
+image::assets/1-BD-wpexam.png[1-BD-wpexam, 200,200]
+
+
+
+Se creó la base de datos a través de la interfaz gráfica
+
+
+
+
+### configura el wpwebuser usuario para esta base de datos, contraseña: 1234!!wpuser
+
+
+image::assets/2-conceder-privilegios.png[2-conceder-privilegios, 400,400]
+
+Se creó el usuario por comandos y se hizo un FLUSH.
+
+
+
+### Instala wordpress
+
+
+Descargar el paquete de Wordpress con:
+
+```
+wget https://es.wordpress.org/latest-es_ES.tar.gz
+```
+
+
+Descomprimir el archivo en la localización:
+
+```
+sudo tar xf latest-es_ES.tar.gz -C /var/www/html/
+```
+
+
+Modificar el propietario del directorio:
+
+```
+sudo chown -R www-data: /var/www/html/wordpress
+```
+
+
+Descargar una batería de extensiones de PHP
+
+```
+sudo apt install -y php-{curl,gd,imagick,intl,mbstring,xml,zip}
+```
+
+Y reiniciar Apache2
+
+```
+sudo systemctl reload apache2
+```
+
+
+Ahora que está instalado, se procede a la configuración del sitio incluyendo la conexión con la base de datos previamente creada y su usuario:
+
+
+image::assets/configurar-bd-wordpress.png[configurar-bd-wordpress, 400,400]
+
+
+
+## Cambiando nombre del sitio a 'Repositorio de contenido'
+
+
+Para ello se accede a ajustes > generales, el primer campo de texto.
+
+image::assets/cambio-nombre-wp.png[cambio-nombre-wp, 600,600]
+
+
+
+## Se instala el plugin 'Maintenance':
+
+image::assets/instalando-maintenance.png[instalando-maintenance, 400,400]
+
+
+
+
+## Se instala el plugin 'Duplicator' y se hace un backup:
+
+
+'Crear Nuevo' y dejo la configuración por defecto. Al acabar el proceso, descargo los archivos:
+
+image::assets/duplicator_en_accion.png[duplicator_en_accion, 600,600]
+
+
+
+
+## Se instala el backup en una nueva instancia de Wordpress:
+
+
+Para ello se instala una nueva instancia de Wordpress, en este caso se le llamará a la carpeta wordpress1. Los archivos creados por el Duplicator son añadidos a la carpeta wordpress1.
+
+Se entra en el enlace  de localhost/wordpress1, se clica en installer.php y se configuran las credenciales de la base de datos, usuario y usuario de base de datos.
+
+image::assets/wordpress1-sitio-duplicado.png[wordpress1-sitio-duplicado, 600,600]
+
+
+Y ya se tiene el sitio duplicado:
+
+
+image::assets/instancia-nueva-wordpress.png[instancia-nueva-wordpress, 600,600]
